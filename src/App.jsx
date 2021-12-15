@@ -1,14 +1,27 @@
 import React from 'react';
 
-import { Etiqueta1 } from './components/Etiqueta1';
+import { Lista } from './components/Etiqueta1';
 
 export function App() {
+  const elementos1 = [
+    { done: false, texto: 'Elemento (Comp 1)', prioridad: 'baja' },
+    { done: true, texto: 'Elemento (Comp 2)', prioridad: 'alta' },
+  ];
+  const elementos2 = [
+    { done: false, texto: 'Elemento (Comp 3)', prioridad: 'media' },
+    { done: true, texto: 'Elemento (Comp 4)', prioridad: 'alta' },
+    { done: false, texto: 'Elemento (Comp 5)', prioridad: 'baja' },
+  ];
+  const elementos3 = [
+    { done: false, texto: 'Elemento (Comp 6)', prioridad: 'media' },
+  ];
+
   return (
     <div>
-      <h1>Hola (desde componente)</h1>
-      <Etiqueta1 titulo="Componente 1" icono=":(" />
-      <Etiqueta1 titulo="Componente 2" icono=":*" />
-      <Etiqueta1 titulo="Componente 3" icono=";)" />
+      <h1>Tareas</h1>
+      <Lista titulo="Componente 1" icono="😸" elementos={elementos1} />
+      <Lista titulo="Componente 2" icono="🍕" elementos={elementos2} />
+      <Lista titulo="Componente 3" icono="🙉" elementos={elementos3} />
     </div>
   );
 }

@@ -1,16 +1,24 @@
 import React from 'react';
-
 import ComponenteLista from './ComponenteLista';
+export function Lista(props) {
+  const listaComponentes = [];
 
-export function Etiqueta1(props) {
+  if (props.elementos !== undefined) {
+    for (let i = 0; i < props.elementos.length; i++) {
+      listaComponentes.push(
+        <ComponenteLista
+          done={props.elementos[i].done}
+          texto={props.elementos[i].texto}
+          prioridad={props.elementos[i].prioridad}
+        />
+      );
+    }
+  }
+
   return (
     <div>
       {props.titulo} - {props.icono}
-      <ul>
-        <ComponenteLista texto="Elemento 1" />
-        <li>Elemento 2</li>
-        <li>Elemento 3</li>
-      </ul>
+      <ul>{listaComponentes}</ul>
     </div>
   );
 }
