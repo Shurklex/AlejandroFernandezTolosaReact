@@ -3,25 +3,31 @@ import React from 'react';
 import './componente-lista.css';
 
 export default function ComponenteLista(props) {
-  let claseLista = props.prioridad;
-  if (props.done) {
-    claseLista += ' el-done';
-  } else {
-    claseLista += ' el-undone';
+  let claseLista = '';
+  setElementClass();
+
+  function setElementClass() {
+    props.prioridad;
+    if (props.done) {
+      claseLista += ' el-done';
+    } else {
+      claseLista += ' el-undone';
+    }
   }
 
-  function cambiaEstado() {
+  function setTaskStatus() {
     props.done = !props.done;
+    setElementClass();
   }
 
   return (
     <li className={claseLista}>
-      <input type="checkbox" checked={props.done} onChange={cambiaEstado} />
+      <input type="checkbox" onChange={setTaskStatus} />
       {props.texto}
     </li>
   );
-
-  ComponenteLista.defaultProps = {
-    prioridad: 'baja',
-  };
 }
+
+ComponenteLista.defaultProps = {
+  prioridad: 'baja',
+};

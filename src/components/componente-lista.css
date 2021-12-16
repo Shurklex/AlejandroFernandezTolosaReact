@@ -5,6 +5,7 @@ li.el-undone {
 li.el-done {
   text-decoration: line-through;
 }
+
 li.alta {
   color: red;
 }
