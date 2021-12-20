@@ -3,41 +3,42 @@ import React from 'react';
 import './componente-lista.css';
 
 class ComponenteListaClase extends React.Component {
-
-  constructor(props){
+  constructor(props) {
     super(props);
-    this.done = props.done;
-    this.prioridad = prop.prioridad;
+    this.state = {
+      done: props.done
+    };
+    this.prioridad = props.prioridad;
     this.texto = props.texto;
-    setElementClass();
   }
 
-  
-setElementClass() {
-    this.prioridad;
-    if (this.done) {
-      claseLista += ' el-done';
+  setElementClass() {
+    this.claseLista = this.prioridad;
+    if (this.state.done) {
+      this.claseLista += ' el-done';
     } else {
-      claseLista += ' el-undone';
+      this.claseLista += ' el-undone';
     }
   }
 
-  setTaskStatus() {
-    this.done = !this.done;
-    setElementClass();
+  changeStatus() {
+    this.setState({done: !this.state.done});   
   }
 
-  render(){
+  render() {
+    this.setElementClass();
     return (
-      <li className={claseLista}>
-        <input type="checkbox" onChange={setTaskStatus} />
+      <li className={this.claseLista}>
+        <input type="checkbox" defaultChecked={this.state.done} onChange={this.changeStatus.bind(this)} />
         {this.texto}
       </li>
     );
   }
-  
 }
-
-ComponenteLista.defaultProps = {
+export default ComponenteListaClase;
+ComponenteListaClase.defaultProps = {
   prioridad: 'baja',
+  done: false,
 };
+
+export default ComponenteListaClase;
