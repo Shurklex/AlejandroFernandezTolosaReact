@@ -1,18 +1,18 @@
 import React from 'react';
 
-import { Lista } from './components/Etiqueta1';
+import { Lista } from './components/Lista';
 
 export function App() {
   const elementos1 = [
-    { done: false, texto: 'Elemento (Comp 1)', prioridad: 'alta' },
-    { done: true, texto: 'Elemento (Comp 2)', prioridad: 'media' },
+    { done: false, texto: 'Limpiar el Cajon de Arena', prioridad: 'alta' },
+    { done: true, texto: 'Hacer la Lista de la Compra', prioridad: 'media' },
   ];
   const elementos2 = [
-    { done: false, texto: 'Elemento (Comp 3)' },
-    { done: true, texto: 'Elemento (Comp 4)' },
-    { done: false, texto: 'Elemento (Comp 5)' },
+    { done: false, texto: 'Papel' },
+    { done: true, texto: 'Queso' },
+    { done: false, texto: 'Chocolate' },
   ];
-  const elementos3 = [{ done: false, texto: 'Elemento (Comp 6)' }];
+  const elementos3 = [{ done: false, texto: 'Tarea SGE' }];
 
   return (
     <div>
