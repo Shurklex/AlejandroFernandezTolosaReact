@@ -18,8 +18,12 @@ export function App() {
     <div>
       <h1>Listas de tareas</h1>
       <ListaClase titulo="Tareas de la casa" icono="♥" elementos={elementos1} />
-      <Lista titulo="Lista de la compra" icono="✌" elementos={elementos2} />
-      <Lista titulo="ToDos del curso" icono="🙌" elementos={elementos3} />
+      <ListaClase
+        titulo="Lista de la compra"
+        icono="✌"
+        elementos={elementos2}
+      />
+      <ListaClase titulo="ToDos del curso" icono="🙌" elementos={elementos3} />
     </div>
   );
 }

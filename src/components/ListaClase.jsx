@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React from 'react';
 import ComponenteListaClase from './ComponenteListaClase';
 
 class ListaClase extends React.Component {
@@ -6,13 +6,12 @@ class ListaClase extends React.Component {
     super(props);
     this.titulo = props.titulo;
     this.icono = props.icono;
-    this.valorTextinput;
-    this.valorLista;
 
-    const listaInicial = [];
+    this.listaInicial = [];
+
     if (props.elementos !== undefined) {
       for (let i = 0; i < props.elementos.length; i++) {
-        listaInicial.push(
+        this.listaInicial.push(
           <ComponenteListaClase
             done={props.elementos[i].done}
             texto={props.elementos[i].texto}
@@ -21,10 +20,27 @@ class ListaClase extends React.Component {
         );
       }
     }
+    this.state = {
+      listaActual: this.listaInicial,
+    };
+
+    this.inputText;
+    this.selectPrioridad;
   }
 
   addComponente() {
-    
+    this.listaInicial = this.listaInicial.concat(
+      <ComponenteListaClase
+        texto={this.inputText.value}
+        prioridad={this.selectPrioridad.value}
+      />
+    );
+    this.inputText.value = '';
+    this.changeState();
+  }
+
+  changeState() {
+    this.setState({ listaActual: this.listaInicial });
   }
 
   render() {
@@ -32,20 +48,28 @@ class ListaClase extends React.Component {
       <div>
         {this.titulo} - {this.icono}
         <ul>
+          {this.state.listaActual}
           <li>
             <input
-              ref={}
+              ref={(c) => (this.inputText = c)}
               type="text"
               placeholder="Introduce una tarea"
             />
-            <select name="listaDesplegable">
+            <select
+              name="listaDesplegable"
+              ref={(c) => (this.selectPrioridad = c)}
+            >
               <option value="baja">baja</option>
               <option value="media">media</option>
               <option value="alta">alta</option>
             </select>
             <br />
 
-            <input type="button" value="click" onClick={this.addComponente} />
+            <input
+              type="button"
+              value="click"
+              onClick={() => this.addComponente()}
+            />
           </li>
         </ul>
       </div>
