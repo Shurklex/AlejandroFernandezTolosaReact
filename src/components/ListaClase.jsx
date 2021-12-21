@@ -3,48 +3,49 @@ import ComponenteListaClase from './ComponenteListaClase';
 
 class ListaClase extends React.Component {
   constructor(props) {
-    const listaInicial = [];
-
     super(props);
     this.titulo = props.titulo;
     this.icono = props.icono;
-    this.listaComponentes = useState([this.listaInicial]);
-    this.setlistaComponentes = useState([this.listaInicial]);
-    this.valorTextinput = useRef(' ');
-    this.valorLista = useRef(' ');
+    this.valorTextinput;
+    this.valorLista;
+
+    const listaInicial = [];
+    if (props.elementos !== undefined) {
+      for (let i = 0; i < props.elementos.length; i++) {
+        listaInicial.push(
+          <ComponenteListaClase
+            done={props.elementos[i].done}
+            texto={props.elementos[i].texto}
+            prioridad={props.elementos[i].prioridad}
+          />
+        );
+      }
+    }
   }
 
-  addElement() {
-    this.listaComponentes.concat(
-      <ComponenteListaClase
-        done={false}
-        texto={this.valorTextinput.current.value}
-        prioridad={this.valorLista.current.value}
-      />
-    );
-    setlistaComponentes(newLista);
+  addComponente() {
+    
   }
+
   render() {
     return (
       <div>
         {this.titulo} - {this.icono}
         <ul>
-          {listaComponentes}
           <li>
             <input
-              ref={valorTextinput}
+              ref={}
               type="text"
               placeholder="Introduce una tarea"
             />
-
-            <select name="listaDesplegable" ref={valorLista}>
+            <select name="listaDesplegable">
               <option value="baja">baja</option>
               <option value="media">media</option>
               <option value="alta">alta</option>
             </select>
             <br />
 
-            <input type="button" value="click" onClick={this.addElement()} />
+            <input type="button" value="click" onClick={this.addComponente} />
           </li>
         </ul>
       </div>
