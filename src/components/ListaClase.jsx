@@ -1,21 +1,25 @@
 import React, { useState, useRef } from 'react';
 import ComponenteListaClase from './ComponenteListaClase';
 
-class Lista extends React.Component {
+class ListaClase extends React.Component {
   constructor(props) {
+    const listaInicial = [];
+
     super(props);
-    this.listaComponentes = useState([listaInicial]);
-    this.setlistaComponentes = useState([listaInicial]);
+    this.titulo = props.titulo;
+    this.icono = props.icono;
+    this.listaComponentes = useState([this.listaInicial]);
+    this.setlistaComponentes = useState([this.listaInicial]);
     this.valorTextinput = useRef(' ');
     this.valorLista = useRef(' ');
   }
 
   addElement() {
-    const newLista = listaComponentes.concat(
+    this.listaComponentes.concat(
       <ComponenteListaClase
         done={false}
-        texto={valorTextinput.current.value}
-        prioridad={valorLista.current.value}
+        texto={this.valorTextinput.current.value}
+        prioridad={this.valorLista.current.value}
       />
     );
     setlistaComponentes(newLista);
@@ -23,7 +27,7 @@ class Lista extends React.Component {
   render() {
     return (
       <div>
-        {props.titulo} - {props.icono}
+        {this.titulo} - {this.icono}
         <ul>
           {listaComponentes}
           <li>
