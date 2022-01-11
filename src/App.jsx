@@ -10,9 +10,23 @@ export function App() {
   return (
     <Router>
       <Header />
-      <Route path="/" exact component={Home} />
+      <Route {this.createMenulinks()}/>
       <Route path="/listas" component={PaginaListas} />
       <Route path="/perfil" component={Perfil} />
     </Router>
   );
+
+
+createMenulinks() {
+  const listComponents = [];
+  for (let i = 0; i < MenuItem.length; i++) {
+    listComponents.push(
+      <li>
+        <Link to={MenuItem[i].path}>{MenuItem[i].title}</Link>
+      </li>
+    );
+  }
+
+  return listComponents;
+}
 }
