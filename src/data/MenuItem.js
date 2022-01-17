@@ -2,7 +2,7 @@ import { Home } from '../components/Home';
 import { PaginaListas } from '../components/PaginaListas';
 import { Perfil } from '../components/Perfil';
 
-export const MenuItem = [
+export const MenuItems = [
   {
     id: 1,
     path: '/',
