@@ -5,6 +5,25 @@ import { TitulosTablaJugadores, JugadoresTabla } from '../data/JugadoresTabla';
 class Jugadores extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      Numero: JugadoresTabla[0].Numero,
+      Nombre: JugadoresTabla[0].Nombre,
+      Apellido: JugadoresTabla[0].Apellido,
+      Posicion: JugadoresTabla[0].Posicion,
+      Imagen: JugadoresTabla[0].Imagen,
+      Descripción: JugadoresTabla[0].Descripción,
+    };
+  }
+
+  changeStatus(jugador) {
+    this.setState({
+      Numero: jugador.Nº,
+      Nombre: jugador.Nombre,
+      Apellido: jugador.Apellido,
+      Posicion: jugador.Posicion,
+      Imagen: jugador.Imagen,
+      Descripción: jugador.Descripción,
+    });
   }
 
   render() {
@@ -24,13 +43,13 @@ class Jugadores extends React.Component {
                   </tr>
                 </thead>
                 <tbody>
-                  {JugadoresTabla.map((Jugador) => {
+                  {JugadoresTabla.map((item) => {
                     return (
-                      <tr>
-                        <td>{Jugador.Nº}</td>
-                        <td>{Jugador.Nombre}</td>
-                        <td>{Jugador.Apellido}</td>
-                        <td>{Jugador.Posicion}</td>
+                      <tr onClick={() => this.changeStatus(item)}>
+                        <td>{item.Nº}</td>
+                        <td>{item.Nombre}</td>
+                        <td>{item.Apellido}</td>
+                        <td>{item.Posicion}</td>
                       </tr>
                     );
                   })}
@@ -38,11 +57,17 @@ class Jugadores extends React.Component {
               </Table>
             </Col>
             <Col lg={4} md={6}>
-              <Card>
-                <Card.Img />
+              <Card style={{ width: '18rem' }}>
+                <Card.Img variant="top" src={this.state.Imagen} />
                 <Card.Body>
-                  <Card.Title></Card.Title>
-                  <Card.Text></Card.Text>
+                  <Card.Title>
+                    {this.state.Nombre} {this.state.Apellido}
+                  </Card.Title>
+                  <Card.Text>
+                    Numero: {this.state.Numero}
+                    <p />
+                    {this.state.Descripción}
+                  </Card.Text>
                 </Card.Body>
               </Card>
             </Col>
