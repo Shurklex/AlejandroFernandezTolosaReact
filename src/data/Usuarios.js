@@ -1,0 +1,32 @@
+export const Usuarios = [
+  {
+    ID: 1,
+    Usuario: 'Shurklex',
+    Contraseña: 'Admin-123',
+    Nombre: 'Alejandro',
+    Apellido: 'Fernández',
+    Curso: 'DAM 2',
+    Icono: 'https://image.flaticon.com/icons/png/512/16/16363.png',
+    Calificacion: '10',
+  },
+  {
+    ID: 2,
+    Usuario: 'Frambowey22',
+    Contraseña: 'Frb2002',
+    Nombre: 'Fernando',
+    Apellido: 'Rado',
+    Curso: 'DAM 1',
+    Icono: 'https://image.flaticon.com/icons/png/512/527/527489.png',
+    Calificacion: '3',
+  },
+  {
+    ID: 3,
+    Usuario: 'Rzarca',
+    Contraseña: 'Rope54',
+    Nombre: 'Rodrigo',
+    Apellido: 'Zarca',
+    Curso: 'ASIR 1',
+    Icono: 'https://image.flaticon.com/icons/png/512/64/64495.png',
+    Calificacion: '7',
+  },
+];

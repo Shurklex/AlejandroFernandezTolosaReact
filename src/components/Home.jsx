@@ -1,5 +1,6 @@
 import React from 'react';
 import { Container, Form, Button } from 'react-bootstrap';
+import { Usuarios } from '../data/Usuarios';
 
 class Home extends React.Component {
   constructor(props) {
@@ -8,9 +9,20 @@ class Home extends React.Component {
     this.login = this.login.bind(this);
     this.inputUser = React.createRef();
     this.inputPass = React.createRef();
+    this.comprobar == false;
   }
 
   login() {
+    this.setState({
+      user: this.inputUser.current.value,
+      password: this.inputPass.current.value,
+    });
+  }
+
+  cerrarsesion() {
+    localStorage.setItem('user', '');
+    localStorage.setItem('password', '');
+
     this.setState({
       user: this.inputUser.current.value,
       password: this.inputPass.current.value,
@@ -26,14 +38,24 @@ class Home extends React.Component {
 
   render() {
     {
+      Usuarios.map((item) => {
+        if (this.state.user == item.Usuario) {
+          this.comprobar == true;
+        }
+      });
+
       if (
         this.state !== null &&
         this.state.user !== null &&
-        this.state.user !== ''
+        this.state.user !== '' &&
+        this.comprobar == true
       ) {
         return (
           <div className="main-site">
             <h1>Bienvenido {this.state.user}!</h1>
+            <Button variant="primary" type="button" onClick={this.cerrarsesion}>
+              Cerrar Sesion
+            </Button>
           </div>
         );
       } else {
@@ -48,12 +70,12 @@ class Home extends React.Component {
                   ref={this.inputUser}
                 />
                 <Form.Text className="text-muted">
-                  Tambien vale con su gmail o numero de telefono
+                  También vale con su gmail o numero de telefono
                 </Form.Text>
               </Form.Group>
 
               <Form.Group className="mb-3" controlId="formBasicPassword">
-                <Form.Label>Constraeña:</Form.Label>
+                <Form.Label>Constraseña:</Form.Label>
                 <Form.Control
                   type="password"
                   placeholder="Contraseña"
