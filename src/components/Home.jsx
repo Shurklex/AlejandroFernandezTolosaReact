@@ -5,11 +5,10 @@ import { Usuarios } from '../data/Usuarios';
 class Home extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { user: '', password: '' };
+    this.state = { user: '', password: '', comprobar: false };
     this.login = this.login.bind(this);
     this.inputUser = React.createRef();
     this.inputPass = React.createRef();
-    this.comprobar == false;
   }
 
   login() {
@@ -22,11 +21,6 @@ class Home extends React.Component {
   cerrarsesion() {
     localStorage.setItem('user', '');
     localStorage.setItem('password', '');
-
-    this.setState({
-      user: this.inputUser.current.value,
-      password: this.inputPass.current.value,
-    });
   }
 
   componentDidMount() {
@@ -40,7 +34,8 @@ class Home extends React.Component {
     {
       Usuarios.map((item) => {
         if (this.state.user == item.Usuario) {
-          this.comprobar == true;
+          console.log(item.Usuario);
+          this.state.comprobar = true;
         }
       });
 
@@ -48,7 +43,7 @@ class Home extends React.Component {
         this.state !== null &&
         this.state.user !== null &&
         this.state.user !== '' &&
-        this.comprobar == true
+        this.state.comprobar == true
       ) {
         return (
           <div className="main-site">
