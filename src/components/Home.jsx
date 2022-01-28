@@ -5,10 +5,25 @@ import { Usuarios } from '../data/Usuarios';
 class Home extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { user: '', password: '', comprobar: false };
+    this.state = {
+      user: '',
+      password: '',
+      nombre: '',
+      apellido: '',
+      nota: '',
+      curso: '',
+      foto: '',
+      comprobarU: false,
+      comprobarC: false,
+    };
     this.login = this.login.bind(this);
     this.inputUser = React.createRef();
     this.inputPass = React.createRef();
+    this.inputNom = React.createRef();
+    this.inputApel = React.createRef();
+    this.inputNota = React.createRef();
+    this.inputCurso = React.createRef();
+    this.inputFoto = React.createRef();
   }
 
   login() {
@@ -16,11 +31,6 @@ class Home extends React.Component {
       user: this.inputUser.current.value,
       password: this.inputPass.current.value,
     });
-  }
-
-  cerrarsesion() {
-    localStorage.setItem('user', '');
-    localStorage.setItem('password', '');
   }
 
   componentDidMount() {
@@ -33,9 +43,24 @@ class Home extends React.Component {
   render() {
     {
       Usuarios.map((item) => {
-        if (this.state.user == item.Usuario) {
-          console.log(item.Usuario);
-          this.state.comprobar = true;
+        if (
+          this.state.user == item.Usuario &&
+          this.state.password == item.Contraseña
+        ) {
+          this.state.comprobarU = true;
+          this.state.comprobarC = true;
+          this.state.nombre = item.Nombre;
+          this.state.apellido = item.Apellido;
+          this.state.nota = item.Calificacion;
+          this.state.curso = item.Curso;
+          this.state.foto = item.Icono;
+          localStorage.setItem('user', item.Usuario);
+          localStorage.setItem('password', item.Contraseña);
+          localStorage.setItem('nombre', item.Nombre);
+          localStorage.setItem('apellido', item.Apellido);
+          localStorage.setItem('nota', item.Calificacion);
+          localStorage.setItem('curso', item.Curso);
+          localStorage.setItem('foto', item.Icono);
         }
       });
 
@@ -43,14 +68,14 @@ class Home extends React.Component {
         this.state !== null &&
         this.state.user !== null &&
         this.state.user !== '' &&
-        this.state.comprobar == true
+        this.state.comprobarU == true &&
+        this.state.password !== null &&
+        this.state.password !== '' &&
+        this.state.comprobarC == true
       ) {
         return (
           <div className="main-site">
             <h1>Bienvenido {this.state.user}!</h1>
-            <Button variant="primary" type="button" onClick={this.cerrarsesion}>
-              Cerrar Sesion
-            </Button>
           </div>
         );
       } else {
@@ -93,6 +118,11 @@ class Home extends React.Component {
   componentWillUnmount() {
     localStorage.setItem('user', this.state.user);
     localStorage.setItem('password', this.state.password);
+    localStorage.setItem('nombre', this.state.nombre);
+    localStorage.setItem('apellido', this.state.apellido);
+    localStorage.setItem('nota', this.state.nota);
+    localStorage.setItem('curso', this.state.curso);
+    localStorage.setItem('foto', this.state.foto);
   }
 }
 
