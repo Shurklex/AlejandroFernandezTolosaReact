@@ -3,6 +3,7 @@ import { PaginaListas } from '../components/PaginaListas';
 import Perfil from '../components/Perfil';
 import Jugadores from '../components/Jugadores';
 import PelisGhibli from '../components/PelisGhibli';
+import Digimon from '../components/Digimon';
 
 export const MenuItems = [
   {
@@ -34,6 +35,12 @@ export const MenuItems = [
     path: '/pelisghibli',
     title: 'PelisGhibli',
     component: PelisGhibli,
+  },
+  {
+    id: 6,
+    path: '/digimon',
+    title: 'Digimon',
+    component: Digimon,
   },
 ];
 
