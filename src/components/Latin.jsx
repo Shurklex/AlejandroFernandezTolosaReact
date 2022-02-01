@@ -2,7 +2,7 @@ import React from 'react';
 import { Container, Table, Row, Col, Card } from 'react-bootstrap';
 import './table_component.css';
 
-class Digimon extends React.Component {
+class Latin extends React.Component {
   constructor(props) {
     super(props);
     this.state = { selectedItem: '', tableData: [] };
@@ -13,7 +13,7 @@ class Digimon extends React.Component {
   }
 
   async componentDidMount() {
-    const response = await fetch('https://digimon-api.vercel.app/api/digimon');
+    const response = await fetch('https://jsonplaceholder.typicode.com/todos');
     const responseData = await response.json();
     this.setState({ tableData: responseData, selectedItem: responseData[0] });
   }
@@ -21,23 +21,25 @@ class Digimon extends React.Component {
   render() {
     return (
       <div clasName="main-site">
-        <h1>DIgimons</h1>
+        <h1>Frases Latin</h1>
         <Container>
           <Row>
             <Col lg={8} md={6}>
               <Table striped bordered hover variant="dark">
                 <thead>
                   <tr>
-                    <th>Name</th>
-                    <th>Evolucion</th>
+                    <th>User ID</th>
+                    <th>ID</th>
+                    <th>Frase</th>
                   </tr>
                 </thead>
                 <tbody>
                   {this.state.tableData.map((item) => {
                     return (
                       <tr onClick={() => this.changeStatus(item)}>
-                        <td>{item.name}</td>
-                        <td>{item.level}</td>
+                        <td>{item.userId}</td>
+                        <td>{item.id}</td>
+                        <td>{item.title}</td>
                       </tr>
                     );
                   })}
@@ -46,11 +48,14 @@ class Digimon extends React.Component {
             </Col>
             <Col lg={4} md={6}>
               <Card style={{ width: '18rem' }}>
-                <Card.Img variant="top" src={this.state.selectedItem.img} />
                 <Card.Body>
-                  <Card.Title>{this.state.selectedItem.name}</Card.Title>
+                  <Card.Title variant="top">
+                    ID: {this.state.selectedItem.id}
+                  </Card.Title>
                   <Card.Text>
-                    Evolucion: {this.state.selectedItem.level}
+                    Autor: {this.state.selectedItem.userId}
+                    <p />
+                    Frase: {this.state.selectedItem.title}
                   </Card.Text>
                 </Card.Body>
               </Card>
@@ -62,4 +67,4 @@ class Digimon extends React.Component {
   }
 }
 
-export default Digimon;
+export default Latin;

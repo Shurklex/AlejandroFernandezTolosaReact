@@ -4,6 +4,7 @@ import Perfil from '../components/Perfil';
 import Jugadores from '../components/Jugadores';
 import PelisGhibli from '../components/PelisGhibli';
 import Digimon from '../components/Digimon';
+import Latin from '../components/Latin';
 
 export const MenuItems = [
   {
@@ -41,6 +42,12 @@ export const MenuItems = [
     path: '/digimon',
     title: 'Digimon',
     component: Digimon,
+  },
+  {
+    id: 7,
+    path: '/latin',
+    title: 'Latin',
+    component: Latin,
   },
 ];
 
