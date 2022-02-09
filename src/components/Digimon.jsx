@@ -13,15 +13,20 @@ class Digimon extends React.Component {
   }
 
   async componentDidMount() {
-    const response = await fetch('https://digimon-api.vercel.app/api/digimon');
+    const response = await fetch(
+      'https://www.zaragoza.es/sede/servicio/mascotas.json'
+    );
     const responseData = await response.json();
-    this.setState({ tableData: responseData, selectedItem: responseData[0] });
+    this.setState({
+      tableData: responseData.result,
+      selectedItem: responseData.result,
+    });
   }
 
   render() {
     return (
       <div clasName="main-site">
-        <h1>DIgimons</h1>
+        <h1>Animales</h1>
         <Container>
           <Row>
             <Col lg={8} md={6}>
@@ -36,7 +41,7 @@ class Digimon extends React.Component {
                   {this.state.tableData.map((item) => {
                     return (
                       <tr onClick={() => this.changeStatus(item)}>
-                        <td>{item.name}</td>
+                        <td>{item.nombre}</td>
                         <td>{item.level}</td>
                       </tr>
                     );
@@ -46,7 +51,7 @@ class Digimon extends React.Component {
             </Col>
             <Col lg={4} md={6}>
               <Card style={{ width: '18rem' }}>
-                <Card.Img variant="top" src={this.state.selectedItem.img} />
+                <Card.Img variant="top" src={this.state.selectedItem.foto} />
                 <Card.Body>
                   <Card.Title>{this.state.selectedItem.name}</Card.Title>
                   <Card.Text>
